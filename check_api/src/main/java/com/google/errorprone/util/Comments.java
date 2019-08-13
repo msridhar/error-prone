@@ -365,8 +365,8 @@ public class Comments {
     private final int offset;
     private final LineMap lineMap;
 
-    private Commented.Builder<ExpressionTree> currentCommentedResultBuilder = null;
-    private Commented.Builder<ExpressionTree> previousCommentedResultBuilder = null;
+    private Commented.@org.checkerframework.checker.objectconstruction.qual.CalledMethods("setTree") Builder<ExpressionTree> currentCommentedResultBuilder = null;
+    private Commented.@org.checkerframework.checker.objectconstruction.qual.CalledMethods("setTree") Builder<ExpressionTree> previousCommentedResultBuilder = null;
     private final ImmutableList.Builder<Commented<ExpressionTree>> resultBuilder =
         ImmutableList.builder();
 
