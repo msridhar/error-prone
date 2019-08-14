@@ -25,7 +25,6 @@ import static com.google.errorprone.matchers.Matchers.inSynchronized;
 import static com.google.errorprone.matchers.Matchers.kindIs;
 import static com.google.errorprone.matchers.Matchers.not;
 import static com.google.errorprone.matchers.Matchers.sameVariable;
-import static com.google.errorprone.matchers.Matchers.toType;
 
 import com.google.errorprone.BugPattern;
 import com.google.errorprone.BugPattern.StandardTags;
@@ -138,7 +137,7 @@ public class NonAtomicVolatileUpdate extends BugChecker
         not(inSynchronized()),
         assignment(
             Matchers.<ExpressionTree>anything(),
-            toType(
+            Matchers.<BinaryTree,ExpressionTree>toType(
                 BinaryTree.class,
                 Matchers.<BinaryTree>allOf(
                     Matchers.<BinaryTree>anyOf(kindIs(Kind.PLUS), kindIs(Kind.MINUS)),
