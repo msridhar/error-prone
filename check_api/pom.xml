@@ -163,17 +163,6 @@
       <systemPath>${env.CHECKERFRAMEWORK}/checker/dist/jdk8.jar</systemPath>
     </dependency>
     <dependency>
-    <groupId>com.google.errorprone</groupId>
-      <artifactId>javac</artifactId>
-      <version>9+181-r4173-1</version>
-    </dependency>
-    <dependency>
-      <groupId>net.sridharan.objectconstruction</groupId>
-      <artifactId>object-construction-checker</artifactId>
-      <version>0.1.7-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>net.sridharan.objectconstruction</groupId>
       <artifactId>object-construction-qual</artifactId>
       <version>0.1.7-SNAPSHOT</version>
@@ -214,16 +203,11 @@
       <source>1.8</source>
       <target>1.8</target>
       <showWarnings>true</showWarnings>
-      <!-- <compilerArguments>
+      <compilerArguments>
         <Xmaxerrs>10000</Xmaxerrs>
         <Xmaxwarns>10000</Xmaxwarns>
-      </compilerArguments> -->
+      </compilerArguments>
       <annotationProcessorPaths>
-        <!-- <path>
-          <groupId>org.checkerframework</groupId>
-          <artifactId>checker</artifactId>
-          <version>3.1.0</version>
-        </path> -->
         <path>
           <groupId>net.sridharan.objectconstruction</groupId>
           <artifactId>object-construction-checker</artifactId>
