@@ -167,12 +167,28 @@
       <artifactId>javac</artifactId>
       <version>9+181-r4173-1</version>
     </dependency>
+    <dependency>
+      <groupId>net.sridharan.objectconstruction</groupId>
+      <artifactId>object-construction-checker</artifactId>
+      <version>0.1.7-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.sridharan.objectconstruction</groupId>
+      <artifactId>object-construction-qual</artifactId>
+      <version>0.1.7-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <!-- GPLv2 with Classpath Exception -->
+      <groupId>com.google.errorprone</groupId>
+      <artifactId>javac</artifactId>
+      <version>${javac.version}</version>
+    </dependency>
   </dependencies>
 
 <properties>
   <!-- These properties will be set by the Maven Dependency plugin -->
   <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
-  <errorProneJavac>${com.google.errorprone:javac:jar}</errorProneJavac>
 </properties>
 
 <build>
@@ -191,37 +207,41 @@
   </plugin>
   <plugin>
     <artifactId>maven-compiler-plugin</artifactId>
-    <version>3.8.0</version>
+    <version>3.8.1</version>
     <configuration>
       <fork>true</fork>
       <!-- If using JDK 8, add source and target. -->
       <source>1.8</source>
       <target>1.8</target>
-      <compilerArguments>
+      <showWarnings>true</showWarnings>
+      <!-- <compilerArguments>
         <Xmaxerrs>10000</Xmaxerrs>
         <Xmaxwarns>10000</Xmaxwarns>
-      </compilerArguments>
+      </compilerArguments> -->
       <annotationProcessorPaths>
-        <path>
+        <!-- <path>
           <groupId>org.checkerframework</groupId>
           <artifactId>checker</artifactId>
           <version>3.1.0</version>
+        </path> -->
+        <path>
+          <groupId>net.sridharan.objectconstruction</groupId>
+          <artifactId>object-construction-checker</artifactId>
+          <version>0.1.7-SNAPSHOT</version>
         </path>
-      </annotationProcessorPaths>
-      <annotationProcessors>
-        <!-- Add all the checkers you want to enable here -->
-        <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
-      </annotationProcessors>
-      <compilerArgs>
+        <path>
+          <groupId>com.google.auto.value</groupId>
+          <artifactId>auto-value</artifactId>
+          <version>${autovalue.version}</version>
+        </path>
+      </annotationProcessorPaths>      
+      <compilerArgs combine.children="append">
         <!-- If using JDK 8, use only the two arguments immediately below. -->
-        <arg>-J-Xbootclasspath/p:${errorProneJavac}</arg>
+        <arg>-J-Xbootclasspath/p:${settings.localRepository}/com/google/errorprone/javac/${javac.version}/javac-${javac.version}.jar</arg>
         <arg>-Xbootclasspath/p:${annotatedJdk}</arg>
-        <!-- If using JDK 11, remove the two arguments above, remove the
-             space in the one below, and uncomment it. -->
-        <!-- <arg>-J- -add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg> -->
 
         <!-- Optionally, -Awarns turns type-checking errors into warnings. -->
-        <!-- <arg>-Awarns</arg> -->
+        <arg>-Awarns</arg>
       </compilerArgs>
     </configuration>
   </plugin>  
