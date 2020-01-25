@@ -13,3 +13,4 @@ then
 fi
 COUNT=$(rg -U --count "build\(\)\n(.*)\n   expected: DECLARED @CalledMethods\(.*\n success" showChecksOutput.txt)
 echo "${COUNT} verified calls"
+gzip showChecksOutput.txt
