@@ -113,7 +113,7 @@ public class ErrorProneOptions {
 
     abstract ImportOrganizer importOrganizer();
 
-    static Builder builder() {
+    static @org.checkerframework.checker.objectconstruction.qual.CalledMethods({"baseDirectory", "importOrganizer", "inPlace", "namedCheckers"}) Builder builder() {
       return new AutoValue_ErrorProneOptions_PatchingOptions.Builder()
           .baseDirectory("")
           .inPlace(false)
